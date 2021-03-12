@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Livro de Receitas</title>
+</head>
+<body>
+    <h1>Livro de Receitas</h1>
+    {% if user%}
+    <p>Bem vindo ao Livro de Receitas, {{user}}!</p>
+    {% else %}
+    <p>Bem vindo ao Livro de Receitas!</p>
+    {% endif %}
+
+    <input type="button" value="Cadastrar ingredientes">
+    <input type="button" value="Cadastrar receitas">
+</body>
+
+</html>
