@@ -15,3 +15,7 @@ def cadastro_ingrediente():
 @app.route('/cadastro/receita')
 def cadastro_receita():
     return render_template('cadastro_receitas.html')
+
+@app.route('/receita')
+def receita():
+    return render_template('receita.html')

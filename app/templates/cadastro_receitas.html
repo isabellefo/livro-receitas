@@ -1,10 +1,85 @@
 <html>
+
 <head>
-    <title>Livro de Receitas</title>
+  <title>Livro de Receitas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='cadastro_receita.css') }}">
 </head>
-<body>
-    <h1>Cadastre uma receita!</h1>
-    <input type="button" value="Cadastrar receitas">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<body class="all">
+
+  <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #361157;">
+    <a class="navbar-brand" href="#">Livro de Receita</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/cadastro/receita">Cadastro de Receita</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/cadastro/ingrediente">Cadastro de Ingredientes</a>
+      </li>
+    </ul>
+  </nav>
+
+  <h1>Cadastre uma receita!</h1>
+
+  <form method="post" id="formulario" class="col-md-4 col-md-offset-4 d-flex flex-column justify-content-center">
+    <div class="form-group">
+      <label for="name">Receita</label>
+      <input type="text" class="form-control" placeholder="Bolo de cenoura" id="name" />
+    </div>
+    <div class="form-group">
+      <label for="msg">Forma de preparo</label>
+      <textarea id="msg" class="form-control" placeholder="Misture todos os ingredientes..."></textarea>
+    </div>
+    <div class="form-group">
+      <label for="tempo">Tempo de preparo</label>
+      <input type="text" class="form-control" placeholder="20 mins" id="tempo" />
+    </div>
+    <div class="input-group ">
+      <select name="dropdown" class="custom-select" id="dd">
+        <option value="Farinha" selected>Farinha</option>
+        <option value="Leite">Leite</option>
+        <option value="Cenoura">Cenoura</option>
+      </select>
+
+      <div class="input-group-append">
+        <button class="btn btn-warning" type="button" onclick="adicionarItem()">
+          Adicionar ingrediente
+        </button>
+      </div>
+    </div>
+    <select name="itens" id="list" class="custom-select mt-4" size="6" style="width: 420px"></select>
+  </form>
+
+  <script>
+    function adicionarItem() {
+      var item = prompt("Quantidade do ingrediente", "Digite a quantidade");
+      if (item == null || item == "") {
+        alert("O uso do prompt foi cancelado!");
+      } else {
+        var itens = document.getElementById("dd");
+        var list = document.getElementById("list");
+        var option = document.createElement("option");
+        option.text = itens.value + " - " + item;
+        list.add(option);
+      }
+    }
+  </script>
+  <div class="button d-flex justify-content-center">
+    <input type="button" class="btn btn-primary" value="Cadastrar receitas" />
+  </div>
 </body>
 
 </html>

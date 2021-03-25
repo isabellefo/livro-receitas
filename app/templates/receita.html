@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <title>Livro de Receitas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='receita.css') }}">
+</head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #361157;">
+        <a class="navbar-brand" href="#">Livro de Receita</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/cadastro/receita">Cadastro de Receita</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/cadastro/ingrediente">Cadastro de Ingredientes</a>
+            </li>
+        </ul>
+    </nav>
+    <table id="receita">
+        <tbody>
+            <tr>
+                <td style="text-align:center">
+                    <h3>Bolo de cenoura</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Tempo de preparo</h4>
+                    <p>30 minutos</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Ingredientes</h4>
+                    <ul>
+                        <li>Farinha - 100g</li>
+                        <li>Leite - 100ml</li>
+                        <li>Cenoura - 10g</li>
+                    </ul>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <h4>Modo de fazer</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum libero ut tellus
+                        interdum finibus. Phasellus porttitor hendrerit lobortis. Nullam volutpat, nibh at elementum
+                        dapibus, arcu nisi suscipit neque, sed dignissim lacus dui sit amet dui. Nam pellentesque, dui
+                        euismod volutpat semper, nulla justo blandit diam, ut ornare erat erat in justo. Nunc bibendum
+                        aliquet dui. Nullam turpis nisi, venenatis id augue at, hendrerit mollis tortor. In hac
+                        habitasse platea dictumst. Cras erat lacus, volutpat eget porttitor sed, porta at tortor.
+                        Vestibulum posuere odio metus, a pellentesque tortor accumsan id. Maecenas in nibh nisl. Etiam
+                        ut scelerisque diam, et facilisis eros. Morbi mattis aliquet nunc vitae malesuada. Aliquam
+                        fringilla a nibh sed commodo. Sed risus felis, ultricies id lacinia ut, luctus ut turpis.</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

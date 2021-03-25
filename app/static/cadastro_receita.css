@@ -1,0 +1,15 @@
+#formulario {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #formulario2 {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h1 {
+    text-align: center;
+    padding: 20px;
+  }
