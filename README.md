@@ -2,7 +2,7 @@
 
 Aplicação web desenvolvida em Flask para cadastro e visualização de receitas
 
-[Link para vídeo explicativo do sistema](https://youtu.be/721S-R5WNMc)
+[Vídeo Entrega Parcial 1 - Protótipo Navegável](https://youtu.be/721S-R5WNMc)
 
 ## Instalação
 
@@ -15,7 +15,7 @@ cd livro-receitas
 
 Dentro da pasta do projeto, crie e inicialize um ambiente virtual:
 
-```bash
+```
 virtualenv venv
 ```
 
@@ -44,9 +44,9 @@ python run.py
 
 Outra forma de realizar a execução
 
-```
+```bash
 cd livro-receitas
-waitress-serve --listen=127.0.0.1:5000
+waitress-serve --listen=127.0.0.1:5000 app:app
 ```
 
 A aplicação roda no ip 127.0.0.1 e na porta 5000
