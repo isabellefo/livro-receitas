@@ -1,6 +1,7 @@
 # Livro de Receitas
 
 Aplicação web desenvolvida em Flask para cadastro e visualização de receitas
+[Link para vídeo explicativo do sistema](https://youtu.be/721S-R5WNMc)
 
 ## Instalação
 
