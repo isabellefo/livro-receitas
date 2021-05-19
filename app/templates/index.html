@@ -61,6 +61,19 @@
                 </td>
 
             </tr>
+            {% for receita in receitas %}
+            <tr>
+
+
+                <td>{{receita.nome}}</td>
+
+                <td>
+                    <a class="btn btn-danger" onclick="AdicionarIngrediente()" href="/receita"
+                        style="width: inherit;">-></a>
+                </td>
+
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 

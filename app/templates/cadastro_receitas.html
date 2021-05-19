@@ -33,19 +33,18 @@
   </nav>
 
   <h1>Cadastre uma receita!</h1>
-
-  <form method="post" id="formulario" class="col-md-4 col-md-offset-4 d-flex flex-column justify-content-center">
+  <form action="{{ url_for('cadastro_receita') }}" method = "POST" id="formulario" class="col-md-4 col-md-offset-4 d-flex flex-column justify-content-center">
     <div class="form-group">
       <label for="name">Receita</label>
-      <input type="text" class="form-control" placeholder="Bolo de cenoura" id="name" />
+      <input type="text" class="form-control" placeholder="Bolo de cenoura" id="name", name="nome_receita" />
     </div>
     <div class="form-group">
       <label for="msg">Forma de preparo</label>
-      <textarea id="msg" class="form-control" placeholder="Misture todos os ingredientes..."></textarea>
+      <textarea id="msg" name="modo" class="form-control" placeholder="Misture todos os ingredientes..."></textarea>
     </div>
     <div class="form-group">
       <label for="tempo">Tempo de preparo</label>
-      <input type="text" class="form-control" placeholder="20 mins" id="tempo" />
+      <input type="text" class="form-control" placeholder="20 mins" id="tempo" name = "tempo"/>
     </div>
     <div class="input-group ">
       <select name="dropdown" class="custom-select" id="dd">
@@ -61,6 +60,9 @@
       </div>
     </div>
     <select name="itens" id="list" class="custom-select mt-4" size="6" style="width: 420px"></select>
+    <div class="button d-flex justify-content-center">
+      <input type="submit" class="btn btn-primary" value="Cadastrar receitas" />
+    </div>
   </form>
 
   <script>
@@ -77,9 +79,7 @@
       }
     }
   </script>
-  <div class="button d-flex justify-content-center">
-    <input type="button" class="btn btn-primary" value="Cadastrar receitas" />
-  </div>
+  
 </body>
 
 </html>
