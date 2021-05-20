@@ -17,12 +17,10 @@ def index(user):
 def cadastro_ingrediente():
     if request.method == 'POST':
         nome = (request.form.get("nome"))
-        
         if nome:
             i = Ingrediente(nome)
             db.session.add(i)
             db.session.commit()
-
     ingredientes = Ingrediente.query.all()
     return render_template('cadastro_ingredientes.html', ingredientes=ingredientes)                            
 
@@ -44,6 +42,15 @@ def delete(id):
     db.session.delete(ingrediente)
     db.session.commit()
     return render_template('cadastro_ingredientes.html')
+
+@app.route('/edit/ingrediente/<int:id>', methods = ['GET', 'POST'])
+def edit(id):
+    ingrediente = Ingrediente.query.get(id)
+    if request.method == 'POST':
+        ingrediente.nome = request.form['nome_']
+        db.session.commit()
+        return redirect(url_for('cadastro_ingrediente'))
+    return render_template('cadastro_ingredientes.html', ingrediente=ingrediente) 
 
 @app.route('/receita')
 def receita():
