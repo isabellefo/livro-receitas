@@ -38,22 +38,22 @@
         <tbody>
             <tr>
                 <td style="text-align:center">
-                    <h3>Bolo de cenoura</h3>
+                    <h3>{{receita.nome_receita}}</h3>
                 </td>
             </tr>
             <tr>
                 <td>
                     <h4>Tempo de preparo</h4>
-                    <p>30 minutos</p>
+                    <p>{{receita.tempo}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
                     <h4>Ingredientes</h4>
                     <ul>
-                        <li>Farinha - 100g</li>
-                        <li>Leite - 100ml</li>
-                        <li>Cenoura - 10g</li>
+                        {% for i in receita.ingredientes %}
+                        <li>{{i.quantidade}} - {{i.ingredientes.nome}}</li>
+                        {% endfor %}
                     </ul>
                 </td>
 
@@ -61,15 +61,7 @@
             <tr>
                 <td>
                     <h4>Modo de fazer</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum libero ut tellus
-                        interdum finibus. Phasellus porttitor hendrerit lobortis. Nullam volutpat, nibh at elementum
-                        dapibus, arcu nisi suscipit neque, sed dignissim lacus dui sit amet dui. Nam pellentesque, dui
-                        euismod volutpat semper, nulla justo blandit diam, ut ornare erat erat in justo. Nunc bibendum
-                        aliquet dui. Nullam turpis nisi, venenatis id augue at, hendrerit mollis tortor. In hac
-                        habitasse platea dictumst. Cras erat lacus, volutpat eget porttitor sed, porta at tortor.
-                        Vestibulum posuere odio metus, a pellentesque tortor accumsan id. Maecenas in nibh nisl. Etiam
-                        ut scelerisque diam, et facilisis eros. Morbi mattis aliquet nunc vitae malesuada. Aliquam
-                        fringilla a nibh sed commodo. Sed risus felis, ultricies id lacinia ut, luctus ut turpis.</p>
+                    <p>{{receita.modo}}</p>
                 </td>
             </tr>
         </tbody>

@@ -1,11 +1,7 @@
 from app import db
+#from app.models.receita_ingrediente import Receita_Ingrediente
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, ForeignKeyConstraint
 from sqlalchemy.orm import relationship, backref
-ingredientes_receita = db.Table('ingredientes_receita',
-    db.Column('id_ingrediente', db.Integer, db.ForeignKey('ingredientes.id_ingrediente')),
-    db.Column('id_receita', db.Integer, db.ForeignKey('receitas.id_receita'))
-    )
-    
     
 
 class Receita(db.Model):
@@ -15,7 +11,7 @@ class Receita(db.Model):
     nome_receita = db.Column(db.String(80), unique=True, nullable=False)
     tempo = db.Column(db.String(80))
     modo = db.Column(db.String(255))
-    ingredientes = relationship("Ingrediente", secondary=ingredientes_receita, backref = db.backref('receitas'), lazy='dynamic', uselist=True)
+    ingredientes = relationship("ReceitaIngrediente", backref="receit")
 
     def __init__(self,nome_receita,tempo,modo):
         self.nome_receita= nome_receita

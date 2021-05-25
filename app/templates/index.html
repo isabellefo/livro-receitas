@@ -64,19 +64,143 @@
             {% for receita in receitas %}
             <tr>
 
-
-                <td>{{receita.nome}}</td>
+                <td>{{receita.nome_receita}}</td>
 
                 <td>
-                    <a class="btn btn-danger" onclick="AdicionarIngrediente()" href="/receita"
+                    <a class="btn btn-danger" href="/receita/{{receita.id_receita}}"
                         style="width: inherit;">-></a>
                 </td>
+                <td>
+                    <a class="btn btn-danger" href="/delete/receita/{{receita.id_receita}}"
+                        style="width: inherit;">Deletar</a>
+                </td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong{{receita.id_receita}}">
+                    Ver
+                    </button>
 
+                </td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEdit{{receita.id_receita}}">
+                    Edit
+                    </button>
+
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
+    
+  
+  <!-- Modal -->
+  {% for receita in receitas %}
+  <div class="modal fade" id="exampleModalLong{{receita.id_receita}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <h3>{{receita.nome_receita}}</h3>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <h4>Tempo de preparo</h4>
+                            <p>{{receita.tempo}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <h4>Ingredientes</h4>
+                            <ul>
+                                {% for i in receita.ingredientes %}
+                                <li>{{i.quantidade}} - {{i.ingredientes.nome}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+        
+                    </div>
+                    <div>
+                        <div>
+                            <h4>Modo de fazer</h4>
+                            <p>{{receita.modo}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% for receita in receitas %}
+  <!-- Modal -->
+  <div class="modal fade" id="modalEdit{{receita.id_receita}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Alteração de ingrediente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/edit/receita/{{receita.id_receita}}" method = "POST">
+        <div class="modal-body">
+       
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Ingrediente:</label>
+                <input type="text" name="nome_" class="form-control" id="nome_" value = "{{receita.nome_receita}}">
+                <div class="form-group">
+                    <label for="msg">Forma de preparo</label>
+                    <textarea id="msg" name="modo" class="form-control">{{receita.modo}}</textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="tempo">Tempo de preparo</label>
+                    <input type="text" class="form-control" placeholder="20 mins" id="tempo" name = "tempo"  value = "{{receita.tempo}}"/>
+                  </div>
+                  <div>
+                    
+                    
+                    {% for ingrediente in ingredientes %}
+                    {%for i in receita.ingredientes % if ingrediente}
+                    {%if ingrediente.id_ingrediente == i.id_ingrediente %}
+                    <input type="checkbox" name="igs" value="{{i.ingredientes.nome}}" checked>
+                    <label for="{{i.ingredientes.id_ingrediente}}">{{i.ingredientes.nome}}</label><br>
+                    <input type="text" class="form-control" value="{{i.ingredientes.quantidade}}" id="qtd", name="qtd" />
+                    {%else%}
+                    <input type="checkbox" name="igs" value="{{ingrediente.id_ingrediente}}">
+                    <label for="{{ingrediente.id_ingrediente}}">{{ingrediente.nome}}</label><br>
+                    <input type="text" class="form-control" placeholder="Quantidade" id="qtd", name="qtd" />
+                    {%endif%}
+                    {% endfor %}
+                    {% endfor %}
+                    
+                  </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary">Alterar</button>
+        </div>
+    </form>
+      </div>
+    
+    </div>
+  </div>
+  {% endfor %}
 </body>
 
 </html>

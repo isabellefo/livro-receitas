@@ -37,7 +37,7 @@
 
     <h3>Cadastro de ingredientes!</h3>
     <div div class="d-flex justify-content-center">
-        <form action="{{ url_for('cadastro_ingrediente') }}" method = "POST">
+        <form action="/cadastro/ingrediente" method = "POST">
             <div class="pb-1">
                 <input type="text" class="form-control" placeholder="Nome do ingrediente" id="nome" name = "nome"/>
             </div>
@@ -87,9 +87,8 @@
         </tbody>
     </table>
     <!-- Button trigger modal -->
-
+    {% for ingrediente in ingredientes %}
   <!-- Modal -->
-  <!--{% for ingrediente in ingredientes %} -->
   <div class="modal fade" id="exampleModal{{ingrediente.id_ingrediente}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -99,8 +98,9 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <form action="/edit/ingrediente/{{ingrediente.id_ingrediente}}" method = "POST">
         <div class="modal-body">
-            <form action="/edit/ingrediente/{{ingrediente.id_ingrediente}}" method = "POST">
+       
             <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Ingrediente:</label>
                 <input type="text" name="nome_" class="form-control" id="nome_" value = "{{ingrediente.nome}}">
@@ -110,10 +110,12 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
           <button type="submit" class="btn btn-primary">Alterar</button>
         </div>
+    </form>
       </div>
+    
     </div>
   </div>
-  <!-- {% endfor %} -->
+  {% endfor %}
 </body>
 
 </html>

@@ -7,6 +7,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:1234@localhost/liv
 db = SQLAlchemy(app)
 from app.models.ingredientes import Ingrediente
 from app.models.receitas import Receita
+from app.models.receita_ingrediente import ReceitaIngrediente
 db.create_all()
 
 app.debug = True    
