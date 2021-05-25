@@ -15,6 +15,7 @@ def index():
 
 @app.route('/cadastro/ingrediente', methods = ['GET', 'POST'])
 def cadastro_ingrediente():
+    receita = Receita.query.all()
     ingredientes = Ingrediente.query.all()
     if request.method == 'POST':
         nome = (request.form.get("nome"))
@@ -23,7 +24,7 @@ def cadastro_ingrediente():
             db.session.add(i)
             db.session.commit()
             return redirect(url_for('cadastro_ingrediente'))
-    return render_template('cadastro_ingredientes.html', ingredientes=ingredientes)                          
+    return render_template('cadastro_ingredientes.html', ingredientes=ingredientes, receita=receita)                          
 
 @app.route('/cadastro/receita',  methods = ['GET', 'POST'])
 def cadastro_receita():
@@ -33,7 +34,6 @@ def cadastro_receita():
         igs = (request.form.getlist("igs"))
         qtds = (request.form.getlist("qtd"))
         qtds = [x for x in qtds if x]
-        print(igs, qtds)
         nome_receita = (request.form.get("nome_receita"))
         tempo = (request.form.get("tempo"))
         modo = (request.form.get("modo"))
@@ -50,16 +50,22 @@ def cadastro_receita():
 @app.route('/delete/receita/<int:id>')
 def delete_receita(id):
     receita = Receita.query.get(id)
+    ri = ReceitaIngrediente.query.filter_by(id_receita=id).delete(synchronize_session='fetch')
     db.session.delete(receita)
     db.session.commit()
-    return redirect(url_for('receita'))    
+    return redirect(url_for('index'))    
 
 @app.route('/delete/ingrediente/<int:id>')
 def delete(id):
     ingrediente = Ingrediente.query.get(id)
-    db.session.delete(ingrediente)
-    db.session.commit()
-    return redirect(url_for('cadastro_ingrediente'))
+    ri = ReceitaIngrediente.query.filter_by(id_ingrediente = id).all()
+    if not ri:
+        db.session.delete(ingrediente)
+        db.session.commit()
+        return redirect(url_for('cadastro_ingrediente'))
+    else: 
+        print('Receitas possuem esse ingrediente, não é possível realizar a exclusão')
+    return redirect(url_for('index'))   
 
 @app.route('/edit/ingrediente/<int:id>', methods = ['GET', 'POST'])
 def edit(id):
@@ -74,10 +80,17 @@ def edit(id):
 def edit_receita(id):
     receita = Receita.query.get(id)
     if request.method == 'POST':
-        ingrediente.nome = request.form['nome_']
+        receita.nome_receita = request.form['_nome']
+        receita.tempo = (request.form.get("_tempo"))
+        receita.modo = (request.form.get("_modo"))
+        igs = (request.form.getlist("_igs"))
+        qtds = (request.form.getlist("_qtd"))
+        qtds = [x for x in qtds if x]
+        for ig,qtd in zip(igs,qtds):
+            ri = ReceitaIngrediente.query.filter_by(id_receita=id,id_ingrediente = ig).update(dict(quantidade = qtd))
         db.session.commit()
-        return redirect(url_for('cadastro_ingrediente'))
-    return render_template('cadastro_ingredientes.html', ingrediente=ingrediente) 
+        return redirect(url_for('index'))
+    return render_template('index.html', ingrediente=ingrediente) 
 
 @app.route('/receita/<int:id>')
 def receita(id):

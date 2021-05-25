@@ -1,5 +1,4 @@
 from app import db
-#from app.models.receita_ingrediente import Receita_Ingrediente
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, ForeignKeyConstraint
 from sqlalchemy.orm import relationship, backref
     
@@ -10,7 +9,7 @@ class Receita(db.Model):
     id_receita = db.Column(db.Integer, primary_key=True)
     nome_receita = db.Column(db.String(80), unique=True, nullable=False)
     tempo = db.Column(db.String(80))
-    modo = db.Column(db.String(255))
+    modo = db.Column(db.String(4294000000))
     ingredientes = relationship("ReceitaIngrediente", backref="receit")
 
     def __init__(self,nome_receita,tempo,modo):

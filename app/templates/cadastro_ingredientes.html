@@ -42,7 +42,7 @@
                 <input type="text" class="form-control" placeholder="Nome do ingrediente" id="nome" name = "nome"/>
             </div>
             <div class="pt-2 col-row text-center">
-                <input type="submit" class="btn btn-primary" value="Cadastrar">
+                <input type="submit" class="btn btn-success" value="Cadastrar">
             </div>
         </form>
     </div>
@@ -55,32 +55,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Leite</td>
-                <td>
-                    <button type="button" class="btn btn-danger" onclick="AdicionarIngrediente()"
-                        style="width: inherit;"><i class="bi bi-bug"></i>Excluir</button>
-                </td>
-
-            </tr>
-            <tr>
-                <td>Farinha</td>
-                <td>
-                    <button type="button" class="btn btn-danger" onclick="AdicionarIngrediente()"
-                        style="width: inherit;"><i class="bi bi-bug"></i>Excluir</button>
-                </td>
-            </tr>
             {% for ingrediente in ingredientes %}
             <tr>
                 <td>{{ingrediente.nome}}</td>
-                <td>
-                    <a href="/delete/ingrediente/{{ingrediente.id_ingrediente}}" class="btn btn-danger"
-                        style="width: inherit;"><i class="bi bi-bug"></i>Excluir</a>
-                </td>
+                
+                
                 <td>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ingrediente.id_ingrediente}}">
                        Editar
                     </button>
+                </td>
+                <td>
+                    <a href="/delete/ingrediente/{{ingrediente.id_ingrediente}}" class="btn btn-danger"
+                        style="width: inherit;"><i class="bi bi-bug"></i>Excluir</a>
                 </td>
             </tr>
             {% endfor %}

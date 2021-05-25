@@ -35,11 +35,7 @@
         </ul>
     </nav>
     <div class="p-2 mt-4 col-row text-center">
-        {% if user%}
-        <h3>Bem vindo ao Livro de Receitas, {{user}}!</h3>
-        {% else %}
         <h3>Bem vindo ao Livro de Receitas!</h3>
-        {% endif %}
     </div>
     <div class="col-row text-center">
         <a class="btn btn-primary" href="/cadastro/receita">Cadastrar nova receita</a>
@@ -50,33 +46,18 @@
 
     <table id="lista" class="table table-bordered text-center">
         <tbody>
-            <tr>
-
-
-                <td>Bolo de cenoura</td>
-
-                <td>
-                    <a class="btn btn-danger" onclick="AdicionarIngrediente()" href="/receita"
-                        style="width: inherit;">-></a>
-                </td>
-
-            </tr>
             {% for receita in receitas %}
             <tr>
 
                 <td>{{receita.nome_receita}}</td>
 
-                <td>
+                <!-- <td>
                     <a class="btn btn-danger" href="/receita/{{receita.id_receita}}"
                         style="width: inherit;">-></a>
-                </td>
-                <td>
-                    <a class="btn btn-danger" href="/delete/receita/{{receita.id_receita}}"
-                        style="width: inherit;">Deletar</a>
-                </td>
+                </td> -->
                 <td>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong{{receita.id_receita}}">
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalLong{{receita.id_receita}}">
                     Ver
                     </button>
 
@@ -86,7 +67,10 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEdit{{receita.id_receita}}">
                     Edit
                     </button>
-
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="/delete/receita/{{receita.id_receita}}"
+                        style="width: inherit;">Deletar</a>
                 </td>
             </tr>
             {% endfor %}
@@ -100,7 +84,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Receita de {{receita.nome_receita}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -159,35 +143,23 @@
         </div>
         <form action="/edit/receita/{{receita.id_receita}}" method = "POST">
         <div class="modal-body">
-       
             <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Ingrediente:</label>
-                <input type="text" name="nome_" class="form-control" id="nome_" value = "{{receita.nome_receita}}">
+                <input type="text" name="_nome" class="form-control" id="nome_" value = "{{receita.nome_receita}}">
                 <div class="form-group">
                     <label for="msg">Forma de preparo</label>
-                    <textarea id="msg" name="modo" class="form-control">{{receita.modo}}</textarea>
+                    <textarea id="msg" name="_modo" class="form-control">{{receita.modo}}</textarea>
                   </div>
                   <div class="form-group">
                     <label for="tempo">Tempo de preparo</label>
-                    <input type="text" class="form-control" placeholder="20 mins" id="tempo" name = "tempo"  value = "{{receita.tempo}}"/>
+                    <input type="text" class="form-control" placeholder="20 mins" id="tempo" name = "_tempo"  value = "{{receita.tempo}}"/>
                   </div>
                   <div>
-                    
-                    
-                    {% for ingrediente in ingredientes %}
-                    {%for i in receita.ingredientes % if ingrediente}
-                    {%if ingrediente.id_ingrediente == i.id_ingrediente %}
-                    <input type="checkbox" name="igs" value="{{i.ingredientes.nome}}" checked>
-                    <label for="{{i.ingredientes.id_ingrediente}}">{{i.ingredientes.nome}}</label><br>
-                    <input type="text" class="form-control" value="{{i.ingredientes.quantidade}}" id="qtd", name="qtd" />
-                    {%else%}
-                    <input type="checkbox" name="igs" value="{{ingrediente.id_ingrediente}}">
-                    <label for="{{ingrediente.id_ingrediente}}">{{ingrediente.nome}}</label><br>
-                    <input type="text" class="form-control" placeholder="Quantidade" id="qtd", name="qtd" />
-                    {%endif%}
+                    {% for i in receita.ingredientes %}
+                    <input type="checkbox" name="_igs" style="opacity:0;" value="{{i.ingredientes.id_ingrediente}}" checked>
+                    <label name = "igs" for="{{i.ingredientes.id_ingrediente}}">{{i.ingredientes.nome}}</label><br>
+                    <input type="text" class="form-control" value="{{i.quantidade}}" id="_qtd", name="_qtd" />
                     {% endfor %}
-                    {% endfor %}
-                    
                   </div>
             </div>
         </div>

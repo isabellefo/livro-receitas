@@ -46,58 +46,27 @@
       <label for="tempo">Tempo de preparo</label>
       <input type="text" class="form-control" placeholder="20 mins" id="tempo" name = "tempo"/>
     </div>
-    
-    <div class="input-group ">
-      
-      <select name="dropdown" class="custom-select" id="dd">
-        
-        <option value="Farinha" selected>Farinha</option>
-        <option value="Leite">Leite</option>
-        <option value="Cenoura">Cenoura</option>
-        {% for ingrediente in ingredientes %}
-        <option value="{{ingrediente.nome}}">{{ingrediente.nome}}</option>
-        {% endfor %}
-      </select>
-      
-      <div class="input-group-append">
-        
-        <button class="btn btn-warning" type="button" onclick="adicionarItem()">
-          Adicionar ingrediente
-        </button>
-      </div>
-     
-    </div>
 
     <div>
-      {% for ingrediente in ingredientes %}
-      <input type="checkbox" name="igs" value="{{ingrediente.id_ingrediente}}">
-      <label for="{{ingrediente.id_ingrediente}}">{{ingrediente.nome}}</label><br>
-      <input type="text" class="form-control" placeholder="Quantidade" id="qtd", name="qtd" />
-      {% endfor %}
-    </div>
+    <label for="ingredientes">Ingredientes:</label></br>
     
-    <select name="items" id="list" class="custom-select mt-4" size="6" style="width: 420px"></select>
+      {% for ingrediente in ingredientes %}
+     
+      <input type="checkbox" name="igs" value="{{ingrediente.id_ingrediente}}">
+      
+      <label for="{{ingrediente.id_ingrediente}}">{{ingrediente.nome}}</label>
+      
+      <input type="text" class="form-control" style="width:150px;" placeholder="Quantidade" id="qtd", name="qtd" /></br>
+      
+      {% endfor %}
+    
+    </div>
+  
 
     <div class="button d-flex justify-content-center">
-      <input type="submit" class="btn btn-primary" value="Cadastrar receitas" />
+      <input type="submit" class="btn btn-success" value="Cadastrar receitas" />
     </div>
   </form>
-
-  <script>
-    function adicionarItem() {
-      var item = prompt("Quantidade do ingrediente", "Digite a quantidade");
-      if (item == null || item == "") {
-        alert("O uso do prompt foi cancelado!");
-      } else {
-        var itens = document.getElementById("dd");
-        var list = document.getElementById("list");
-        var option = document.createElement("option");
-        option.text = itens.value;
-        list.add(option);
-      }
-    }
-  </script>
-  
 </body>
 
 </html>
