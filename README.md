@@ -3,7 +3,7 @@
 Aplicação web desenvolvida em Flask para cadastro e visualização de receitas
 
 [Vídeo Entrega Parcial 1 - Protótipo Navegável](https://youtu.be/721S-R5WNMc)
-
+[Vídeo Entrega Parcial 2 - Sistema com persistência de dados](https://youtu.be/OcPgJ1007aw)
 
 
 ### Versão mínima do Python necessário para execução do sistema: **3.6**
