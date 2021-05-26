@@ -25,7 +25,7 @@ virtualenv venv
 
 Inicialização em ambiente ***Windows***:
 ```bash
-venv/Script/activate
+venv/Scripts/activate
 ```
 
 Inicialização em ambiente ***Linux***:
@@ -52,5 +52,32 @@ Outra forma de realizar a execução
 cd livro-receitas
 waitress-serve --listen=127.0.0.1:5000 app:app
 ```
-
 A aplicação roda no ip 127.0.0.1 e na porta 5000
+
+
+## Configuração Entrega 2
+Inicialização em ambiente ***Windows***:
+
+```
+git pull origin main
+```
+
+```bash
+venv/Scripts/activate
+```
+Instalação das novas dependências
+```
+pip install -r requirements.txt
+```
+Script de criação do schema do banco
+```
+cd database
+python create_db.py
+```
+Execução do sistema
+```
+cd ..
+python run.py
+```
+
+**OBS:** É muito provável que seja necessária a trocar a senha da conexão do MYSQL nos arquivos */database/create_db.py* e *app/__init__.py* para o funcionamento do sistema  
