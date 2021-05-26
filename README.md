@@ -57,8 +57,9 @@ A aplicação roda no ip 127.0.0.1 e na porta 5000
 
 
 ## Configuração Entrega 2
-Inicialização em ambiente ***Windows***:
+Inicialização em ambiente ***Windows***
 
+Considerando que já tenha o repositório localmente:
 ```
 git pull origin main
 ```
